@@ -18,5 +18,6 @@ try:
 except IOError:
     pass
 
-from myflaskapp import app as application
-
+from pysosweb import app as application
+from pysosweb import *
+db.create_all()
