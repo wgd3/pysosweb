@@ -13,7 +13,7 @@ class rpmdb(db.Model):
 	version = db.Column(db.String(60))
 	warning = db.Column(db.String(200))
 
-	def __init__(self, name, version, warning)
+	def __init__(self, name, version, warning):
 		self.name = name
 		self.version = version
 		self.warning = warning
