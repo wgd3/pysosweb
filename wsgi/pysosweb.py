@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask
+from flask import Flask, request, flash, url_for, redirect, render_template, abort
 
 app = Flask(__name__)
 
@@ -20,7 +20,7 @@ class rpmdb(db.Model):
 
 @app.route("/")
 def hello():
-    return "Hello World!"
+    return render_template('base.html')
 
 if __name__ == "__main__":
     app.run()
