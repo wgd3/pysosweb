@@ -1,10 +1,10 @@
 from setuptools import setup
 
-setup(name='YourAppName',
-      version='1.0',
-      description='OpenShift App',
-      author='Your Name',
-      author_email='example@example.com',
-      url='http://www.python.org/sigs/distutils-sig/',
+setup(name='PySOS Web',
+      version='.1',
+      description='Web based helper for the pysos utility',
+      author='Wallace Daniel',
+      author_email='wdaniel@redhat.com',
+      url='pysosweb-wdaniel.itos.redhat.com',
       install_requires=['Flask>=0.7.2', 'MarkupSafe','Flask-SQLAlchemy'],
      )
