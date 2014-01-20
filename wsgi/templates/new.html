@@ -10,7 +10,7 @@
 </div>
 
 <div class="row">
-	<form role="form" class="form-horizontal">
+	<form role="form" class="form-horizontal" method=post action="">
 		<div class="form-group">
 			<label for="name" class="control-label col-md-2">Package Name</label>
 			<div class="col-md-4"><input type="text" class="form-control" id="name" placeholder="Required"></div>
@@ -32,16 +32,12 @@
 		</div>
 
 		<div class="col-md-6">
-			<button type="submit" class="btn btn-primary btn-lg pull-right">
+			<button type="submit" class="btn btn-success btn-lg pull-right">
 			<a href="{{ url_for('list') }}">Submit</a></button>
 		</div>
 
 
 	</form>	
-</div>
-
-<div class="row col-md-6">
-<button type="button" class="btn btn-primary btn-lg pull-right">Submit</button>
 </div>
 
 </div>
