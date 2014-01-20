@@ -32,21 +32,24 @@
 							</tr>
 						</thead>
 						<tbody>
-						<tr>
+						
 						{% if list is defined %}
 							{% for item in list %}
+							<tr>
 							<td>{{ item.name }}</td>
 							<td>{{ item.version }}</td>
 							<td>{{ item.warning }}</td>
 							<td>{{ item.kcs }}</td>
+							</tr>
 							{% endfor %}
 						{% else %}
+							<tr>
 							<td>RPM #1</td>
 							<td>RPM's Version</td>
 							<td>Related Warning</td>
 							<td>Article <a href=#">234564</a></td>
+							</tr>
 						{% endif %}
-						</tr>
 						</tbody>
 					</table>
 				</div>
