@@ -22,7 +22,8 @@ class rpmdb(db.Model):
 
 @app.route("/")
 def list():
-    return render_template('list.html')
+    return render_template('list.html',
+			list = rpmdb.query.all())
 
 @app.route('/new', methods=['GET','POST'])
 def new():
