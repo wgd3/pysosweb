@@ -27,11 +27,14 @@ def list():
 @app.route('/new', methods=['GET','POST'])
 def new():
     if request.method == 'POST':
-        entry = rpmdb(request.form['name'],request.form['version'],request.form['warning'],request.form['kcs'])
-	db.session.add(entry)
-	db.session.commit()
-	return redirect(url_for('list'))    
-
+	try:
+        	entry = rpmdb(request.form['name'],request.form['version'],request.form['warning'],request.form['kcs'])
+		db.session.add(entry)
+		db.session.commit()
+		return redirect(url_for('list'))    
+	except Exception as e:
+		flash("Something went wrong with your request")
+		
     return render_template('new.html')
 
 if __name__ == "__main__":
