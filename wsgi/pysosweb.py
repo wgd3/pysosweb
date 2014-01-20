@@ -21,7 +21,7 @@ class rpmdb(db.Model):
 		self.kcs = kcs
 
 @app.route("/")
-def hello():
+def list():
     return render_template('list.html')
 
 @app.route('/new')
