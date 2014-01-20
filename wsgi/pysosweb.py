@@ -24,7 +24,7 @@ class rpmdb(db.Model):
 def list():
     return render_template('list.html')
 
-@app.route('/new')
+@app.route('/new', methods=['GET','POST'])
 def new():
     if request.method == 'POST':
         entry = rpmdb(request.form['name'],request.form['version'],request.form['warning'],request.form['kcs'])
