@@ -12,15 +12,21 @@ class rpmdb(db.Model):
 	name = db.Column(db.String(60))
 	version = db.Column(db.String(60))
 	warning = db.Column(db.String(200))
+	kcs = db.Column(db.Integer)
 
-	def __init__(self, name, version, warning):
+	def __init__(self, name, version, warning, kcs):
 		self.name = name
 		self.version = version
 		self.warning = warning
+		self.kcs = kcs
 
 @app.route("/")
 def hello():
-    return render_template('base.html')
+    return render_template('list.html')
+
+@app.route('/new')
+def new():
+    return render_template('new.html')
 
 if __name__ == "__main__":
     app.run()

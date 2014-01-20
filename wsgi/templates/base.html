@@ -16,45 +16,9 @@
 		</nav>
 		
 		<div class="container span8">
-			<div class="row">
-				<div class="page-header">
-					<h1>RPM Overview <small>A list of all current RPM information for PySOS</small></h1>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-					<p>There are currently X RPMs being tracked over X warnings</p>
-					<div class="input-group pull-right">
-						<input type="text" class="form-control" placeholder="RPM Name">
-					</div>
-					</div>
-					
-					<div class="panel-body">
-						<p>Something, something, dark side...</p>
-					</div>
-
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<strong><td>Name</td>
-								<td>Version</td>
-								<td>Warning</td>
-								<td>KCS Article</td></strong>
-							</tr>
-						</thead>
-						<tbody>
-						<tr>
-							<td>RPM #1</td>
-							<td>RPM's Version</td>
-							<td>Related Warning</td>
-							<td>Article <a href=#">234564</a></td>
-						</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
+			
+		{% block content %}
+		{% endblock %} 
 		</div>
 	</body>
 </html>
