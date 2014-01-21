@@ -25,10 +25,13 @@
 					<table class="table table-striped">
 						<thead>
 							<tr>
-								<strong><td>Name</td>
-								<td>Version</td>
-								<td>Warning</td>
-								<td>KCS Article</td></strong>
+								<b><td class="col-md-2">Name</td>
+								<td class="col-md-1">Version</td>
+								<td class="col-md-4">Warning</td>
+								<td class="col-md-1">KCS Article</td>
+								<td class="col-md-1">BZ Number</td>
+								<td class="col-md-2">Reported By</td>
+								<td class="col-md-1">Reported</td></b>
 							</tr>
 						</thead>
 						<tbody>
@@ -40,6 +43,9 @@
 							<td>{{ item.version }}</td>
 							<td>{{ item.warning }}</td>
 							<td>{{ item.kcs }}</td>
+							<td></td>
+							<td></td>
+							<td></td>
 							</tr>
 							{% endfor %}
 						{% else %}

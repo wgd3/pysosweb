@@ -1,0 +1,18 @@
+TO DO LIST:
+
+Update database columns:
+RPM Name
+Version
+Warning
+KCS Number
+BZ Number
+Reported By
+Reported Time
+
+Each line triggers 1 row dropdown with edit/delete options. Edit should turn the row's fields into input boxes and populate a save button
+
+Format the KCS and BZ links 
+
+Create the '/check/rpm/version' functions
+
+Verify push with curl functionality
