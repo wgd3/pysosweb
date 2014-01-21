@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, request, flash, url_for, redirect, render_template, abort
+from  datetime import date
 
 app = Flask(__name__)
 
@@ -13,12 +14,17 @@ class rpmdb(db.Model):
 	version = db.Column(db.String(60))
 	warning = db.Column(db.String(200))
 	kcs = db.Column(db.Integer)
+	bz = db.Column(db.Integer)
+	reporter = db.Column(db.String(15))
+	report_time = db.Column(db.Date)
 
-	def __init__(self, name, version, warning, kcs):
+	def __init__(self, name, version, warning, kcs, bz, report_time, reporter):
 		self.name = name
 		self.version = version
 		self.warning = warning
 		self.kcs = kcs
+		self.bz = bz
+		self.reporter = reporter
 
 @app.route("/")
 def list():
@@ -29,7 +35,10 @@ def list():
 def new():
     if request.method == 'POST':
 	try:
-        	entry = rpmdb(request.form['name'],request.form['version'],request.form['warning'],request.form['kcs'],request.form['bz'],request.form['reporter'])
+		# Set time
+		newDate = date.today()
+
+		entry = rpmdb(request.form['name'],request.form['version'],request.form['warning'],request.form['kcs'],request.form['bz'],newDate,request.form['reporter'])
 		db.session.add(entry)
 		db.session.commit()
 		return redirect(url_for('list'))    
