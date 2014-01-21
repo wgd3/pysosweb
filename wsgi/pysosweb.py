@@ -48,6 +48,34 @@ def new():
 		
     return render_template('new.html')
 
+@app.route('/check/<rpm>/<version>')
+def check(rpm, version):
+
+	validRPM = False
+	query = rpmdb.query.filter_by(name=rpm).first()	
+
+	if query is not None:
+		print "Found valid rpm, switching to True"
+		validRPM = True
+
+	if validRPM:
+		print "Setting version query"
+		versionQuery = rpmdb.query.filter_by(name=rpm).all()
+		for v in versionQuery:
+			print "looking for matching version"
+			if v.version == version:
+				print "Found valid RPM AND valid version"
+				# return template with version warnings
+			else:
+				print "Found valid RPM without a valid version"
+				# return page saying version doesn't exist, but RPM is valid
+	else:
+		print "RPM not found in database"
+		# return template with invalid RPM syntax
+
+	return redirect(url_for('list'))
+
+
 if __name__ == "__main__":
     app.run()
 
