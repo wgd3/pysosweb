@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, request, flash, url_for, redirect, render_template, abort, jsonify
 from  datetime import date
+from wtforms import Form, TextField, IntegerField, validators
 
 app = Flask(__name__)
 
@@ -34,10 +35,22 @@ def list():
 
 @app.route('/new', methods=['GET','POST'])
 def new():
+    
+    error = None
+    invalidKCS = False
+    invalidBZ = False
+
     if request.method == 'POST':
 	try:
 		# Set time
 		newDate = date.today()
+		
+		if request.form['kcs'] == '':
+			invalidKCS = True
+
+		if request.form['bz'] == '':
+			invalidBZ = True
+
 
 		entry = rpmdb(request.form['name'],request.form['version'],request.form['warning'],request.form['kcs'],request.form['bz'],newDate.isoformat(),request.form['reporter'])
 		db.session.add(entry)
@@ -50,6 +63,14 @@ def new():
 
 @app.route('/check/<rpm>/<version>')
 def check(rpm, version):
+
+	# Check user agent to decide between JSON data and HTML response
+	userAgentString = request.headers.get('User-Agent')
+	print "Found " + userAgentString +" as user agent."
+
+	isJSONRequest = False
+	if "python" in userAgentString:
+		isJSONRequest = True
 
 	validRPM = False
 	query = rpmdb.query.filter_by(name=rpm).first()	
@@ -70,13 +91,19 @@ def check(rpm, version):
 			else:
 				print "Found valid RPM without a valid version"
 				# return page saying version doesn't exist, but RPM is valid
-				return jsonify( { 'status': u'fail - invalid version' } )
+				return jsonify( { 'status': u'fail - no entries' } )
 	else:
 		print "RPM not found in database"
 		# return template with invalid RPM syntax
+		return jsonify( { 'status':u'fail - invalid rpm'} )
 
 	return redirect(url_for('list'))
 
+class WarningForm(Form):
+	name = StringField(u'Name', [validators.InputRequired()])
+	version = StringField(u'Version', [validators.InputRequired()])
+	warning = TextAreaField(u'Warninig', [validators.InputRequired()])
+	kcs = IntegerField(u'KCS', [])
 
 if __name__ == "__main__":
     app.run()

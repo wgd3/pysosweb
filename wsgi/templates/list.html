@@ -37,7 +37,7 @@
 						<tbody>
 						
 						{% if list is defined %}
-							{% for item in list %}
+						{% for item in list|sort(attribute='report_time',reverse=True) %}
 							<tr>
 							<td>{{ item.name }}</td>
 							<td>{{ item.version }}</td>
