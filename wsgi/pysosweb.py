@@ -68,6 +68,7 @@ def check(rpm, version):
 				# return template with version warnings
 				new_rpm = [
 					{
+						'status': u'success',
 						'name':query.name,
 						'version':v.version,
 						'warning':query.warning
@@ -77,6 +78,8 @@ def check(rpm, version):
 			else:
 				print "Found valid RPM without a valid version"
 				# return page saying version doesn't exist, but RPM is valid
+				fail = [ { 'status':u'Invalid Version' } ]
+				return jsonify( { 'fail': fail } )
 	else:
 		print "RPM not found in database"
 		# return template with invalid RPM syntax
