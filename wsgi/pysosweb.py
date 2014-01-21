@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask, request, flash, url_for, redirect, render_template, abort
+from flask import Flask, request, flash, url_for, redirect, render_template, abort, jsonify
 from  datetime import date
 
 app = Flask(__name__)
@@ -66,6 +66,14 @@ def check(rpm, version):
 			if v.version == version:
 				print "Found valid RPM AND valid version"
 				# return template with version warnings
+				new_rpm = [
+					{
+						'name':query.name,
+						'version':v.version,
+						'warning':query.warning
+					}
+				]
+				return jsonify( { 'rpm': new_rpm } )
 			else:
 				print "Found valid RPM without a valid version"
 				# return page saying version doesn't exist, but RPM is valid
