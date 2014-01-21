@@ -66,20 +66,11 @@ def check(rpm, version):
 			if v.version == version:
 				print "Found valid RPM AND valid version"
 				# return template with version warnings
-				new_rpm = [
-					{
-						'status': u'success',
-						'name':query.name,
-						'version':v.version,
-						'warning':query.warning
-					}
-				]
-				return jsonify( { 'rpm': new_rpm } )
+				return jsonify( { 'status': u'success','name':query.name,'version':v.version,'warning':query.warning } )
 			else:
 				print "Found valid RPM without a valid version"
 				# return page saying version doesn't exist, but RPM is valid
-				fail = [ { 'status':u'Invalid Version' } ]
-				return jsonify( { 'fail': fail } )
+				return jsonify( { 'status': u'fail - invalid version' } )
 	else:
 		print "RPM not found in database"
 		# return template with invalid RPM syntax
