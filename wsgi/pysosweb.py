@@ -29,7 +29,7 @@ def list():
 def new():
     if request.method == 'POST':
 	try:
-        	entry = rpmdb(request.form['name'],request.form['version'],request.form['warning'],request.form['kcs'])
+        	entry = rpmdb(request.form['name'],request.form['version'],request.form['warning'],request.form['kcs'],request.form['bz'],request.form['reporter'])
 		db.session.add(entry)
 		db.session.commit()
 		return redirect(url_for('list'))    

@@ -42,8 +42,8 @@
 							<td>{{ item.name }}</td>
 							<td>{{ item.version }}</td>
 							<td>{{ item.warning }}</td>
-							<td>{{ item.kcs }}</td>
-							<td></td>
+							<td><a href="https://access.redhat.com/site/solutions/{{ item.kcs}}">{{ item.kcs }}</a></td>
+							<td><a href="https://bugzilla.redhat.com/show_bug.cgi?id={{ item.bz }}">{{ item.bz }}</a></td>
 							<td></td>
 							<td></td>
 							</tr>
