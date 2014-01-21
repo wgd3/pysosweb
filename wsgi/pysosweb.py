@@ -24,6 +24,7 @@ class rpmdb(db.Model):
 		self.warning = warning
 		self.kcs = kcs
 		self.bz = bz
+		self.report_time = report_time
 		self.reporter = reporter
 
 @app.route("/")
@@ -38,7 +39,7 @@ def new():
 		# Set time
 		newDate = date.today()
 
-		entry = rpmdb(request.form['name'],request.form['version'],request.form['warning'],request.form['kcs'],request.form['bz'],newDate,request.form['reporter'])
+		entry = rpmdb(request.form['name'],request.form['version'],request.form['warning'],request.form['kcs'],request.form['bz'],newDate.isoformat(),request.form['reporter'])
 		db.session.add(entry)
 		db.session.commit()
 		return redirect(url_for('list'))    
