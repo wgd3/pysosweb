@@ -113,10 +113,10 @@ def check(rpm, version):
 				print "Found valid RPM AND valid version"
 				# return template with version warnings
 				return jsonify( { 'status': u'success','kcs':query.kcs,'bz':query.bz,'warning':query.warning } )
-			else:
-				print "Found valid RPM without a valid version"
-				# return page saying version doesn't exist, but RPM is valid
-				return jsonify( { 'status': u'fail - no entries' } )
+		
+		print "Found valid RPM without a valid version"
+		# return page saying version doesn't exist, but RPM is valid
+		return jsonify( { 'status': u'fail - no entries' } )
 	else:
 		print "RPM not found in database"
 		# return template with invalid RPM syntax
