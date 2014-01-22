@@ -63,34 +63,11 @@ def new():
 
 @app.route('/rpm/<rpm_name>')
 def rpm_overview(rpm_name):
-	# Find each unique rpm in db
-	distinct_rpms = rpmdb.query.distinct('name').all()
-	for r in distinct_rpms:
-		print "Found distinct RPM: "+str(r.name)
-		
-	# Make list to store all json objects
-	jsonList = []
-	tempStr = ""
-	# For each unique rpm
-	for drpm in distinct_rpms:
-		# Find each versioni
-		distRPMname = str(drpm.name)
-		tempStr = tempStr + "'name':'"+distRPMname+"',"
-		
-		versions = rpmdb.query.filter_by(name=distRPMname).all()
-		print "Found " + str(len(versions))+" versions for "+str(drpm.name)
-		for v in versions:
-			print "Found version: "+str(v)
-			tempStr = tempStr + "'version':'"+v.version+"',"
-			# Find each warning
-			for w in v.warning:
-				tempStr = tempStr + "'warning':'"+w+"',"
+	'''
+	Need to pass 2 variables to the template: rpm (with name and version count), versions (with warnings and associated version number
+	'''	
+	test_rpm = {'name':u'Test Package','versions':u'3'}
 
-		print "String for current DB: " + tempStr
-		jsonList.append(str("{"+tempStr+"}"))
-	
-		# Temporary, for testing
-		test_rpm={'name':'Test Package','version':'1.2.3','warning':'Test warning 1','warning':'Test warning 2'}
 	return render_template('overview.html',rpm=test_rpm)
 
 
