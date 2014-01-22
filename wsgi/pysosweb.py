@@ -89,8 +89,8 @@ def rpm_overview(rpm_name):
 		jsonList.append(str("{"+tempStr+"}"))
 	
 		# Temporary, for testing
-		rpm=jsonify({'name':'Test Package','version':'1.2.3','warning':'Test warning 1','warning':'Test warning 2'})
-	return render_template('overview.html',rpm=rpm)
+		test_rpm=jsonify({'name':'Test Package','version':'1.2.3','warning':'Test warning 1','warning':'Test warning 2'})
+	return render_template('overview.html',rpm=test_rpm)
 
 
 @app.route('/check/<rpm>/<version>')
