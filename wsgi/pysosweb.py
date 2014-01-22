@@ -93,7 +93,7 @@ def rpm_overview(rpm_name):
 				
 		summary = "{'version':u'"+v+"','warnings':["+warnings+"]}"
 		print summary
-		formattedVersions.append(summery)
+		formattedVersions.append(summary)
 	
 	# Below is test data for use during development
 	test_rpm = {'name':u'Test Packages','versions':u'3'}
