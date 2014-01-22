@@ -78,6 +78,7 @@ def rpm_overview(rpm_name):
 		tempStr = tempStr + "'name':'"+distRPMname+"',"
 		
 		versions = rpmdb.query.filter_by(name=distRPMname).all()
+		print "Found " + str(len(versions))+" versions for "+str(drpm.name)
 		for v in versions:
 			print "Found version: "+str(v)
 			tempStr = tempStr + "'version':'"+v.version+"',"
