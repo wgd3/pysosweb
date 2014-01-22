@@ -8,9 +8,6 @@
 		<h1>{{ rpm.name }}</h1><small>{{ rpm.versions|count }} versions found</small>
 	</div>
 	
-	{% for a in rpm|attr %}
-	<h1>{{ a }}</h1>
-	{% endfor %}
 
 	<ul class="list-group">
 		{% for version in rpm.versions %}
