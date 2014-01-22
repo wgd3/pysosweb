@@ -65,15 +65,18 @@ def new():
 def rpm_overview(rpm_name):
 	# Find each unique rpm in db
 	distinct_rpms = rpmdb.query.distinct('name').all()
-	
+	print "Found "+distinct_rpms+" distinct rpms."
+		
 	# Make list to store all json objects
 	jsonList = []
+	tempStr = ""
 	# For each unique rpm
 	for drpm in distinct_rpms:
 		# Find each version
-		tempStr = ""
+		tempStr = tempStr + "'name':"+drpm.name
 		
 		versions = rpmdb.query.filter_by(name=drpm.name).all()
+		print "Versions: " + versions
 		for v in versions:
 			tempStr = tempStr + "'version':"+v.version+","
 			# Find each warning
