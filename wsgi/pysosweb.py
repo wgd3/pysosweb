@@ -84,7 +84,9 @@ def rpm_overview(rpm_name):
 	
 	# find warnings for each version
 	for v in versions:
+		print "Looking for version "+v
 		for r in rpm_query:
+			print "Evaluating RPM "+r.name+" which has version "+r.version
 			# Look for matching version number in each original db query
 			if v in r.version:
 				print "found entry for version "+v
