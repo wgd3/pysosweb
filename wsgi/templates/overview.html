@@ -12,7 +12,7 @@
 	<ul class="list-group">
 		{% for v in versions %}
 		<li class="list-group-item">
-			<h3 class="list-group-item-heading">{{ v.version }}<span class="label label-warning">    {{ v.warnings|count }} warnings</span></h3>
+			<h3 class="list-group-item-heading">{{ v.version }}        <span class="label label-warning">{{ v.warnings|count }} warnings</span></h3>
 		</li>
 			{% for warning in v.warnings %}
 			<li class="list-group-item">
