@@ -77,8 +77,8 @@ def rpm_overview(rpm_name):
 		tempStr = tempStr + "'name':"+drpm.name
 		
 		versions = rpmdb.query.filter_by(name=drpm.name).all()
-		print "Versions: " + versions
 		for v in versions:
+			print "Found version: "+str(v)
 			tempStr = tempStr + "'version':"+v.version+","
 			# Find each warning
 			for w in v.warning:
