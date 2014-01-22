@@ -61,6 +61,31 @@ def new():
 		
     return render_template('new.html')
 
+@app.route('/rpm/<name>')
+def rpm_overview(name):
+	# Find each unique rpm in db
+	distinct_rpms = rpmdb.query(rpms.name).distinct()
+	
+	# Make list to store all json objects
+	jsonList = []
+	# For each unique rpm
+	for drpm in distinct_rpms:
+		# Find each version
+		tempStr = ""
+		
+		versions = rpmdb.query.filter_by(name=drpm.name).all()
+		for v in versions:
+			tempStr = tempStr + "'version':"+v.version+","
+			# Find each warning
+			for w in v.warning:
+				tempStr = tempStr + "'warning':"+w+","
+
+		print "String for current DB: " + tempStr
+		jsonList.append(str("{"+tempStr+"}"))
+	
+	return render_template('overview.html',rpm={'name':u'Test Package','version':u'1.2.3','warning':u'Test warning 1','warning',u'Test warning 2'})
+
+
 @app.route('/check/<rpm>/<version>')
 def check(rpm, version):
 
@@ -87,7 +112,7 @@ def check(rpm, version):
 			if v.version == version:
 				print "Found valid RPM AND valid version"
 				# return template with version warnings
-				return jsonify( { 'status': u'success','name':query.name,'version':v.version,'warning':query.warning } )
+				return jsonify( { 'status': u'success','kcs':query.kcs,'bz':query.bz,'warning':query.warning } )
 			else:
 				print "Found valid RPM without a valid version"
 				# return page saying version doesn't exist, but RPM is valid

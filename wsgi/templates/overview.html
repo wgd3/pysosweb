@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+
+	<div class="page-header">
+		<h1>{{ rpm.name }}</h1><small>{{ rpm.versions|count }} versions found</small>
+	</div>
+
+	<ul class="list-group">
+		{% for version in rpm.versions %}
+		<li class="list-group-item">
+			<span class="badge">{{ version.warnings|count }}</span>
+			<h3 class="list-group-item-heading">{{ version }}</h3>
+		</li>
+			{% for warning in version.warnings %}
+			<li class="list-group-item">
+				<p class="list-group-item-text">{{ warning }}</p>
+			</li>
+			{% endfor %}	
+		{% endfor %}
+	</ul>
+
+
+</div>
+
+{% endblock %}
