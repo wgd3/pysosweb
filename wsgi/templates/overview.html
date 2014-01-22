@@ -8,6 +8,8 @@
 		<h1>{{ rpm.name }}</h1><small>{{ rpm.versions|count }} versions found</small>
 	</div>
 
+	<h1>{{ rpm|string }}</h1>
+
 	<ul class="list-group">
 		{% for version in rpm.versions %}
 		<li class="list-group-item">
