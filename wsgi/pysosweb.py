@@ -68,7 +68,7 @@ def rpm_overview(rpm_name):
 	'''	
 	test_rpm = {'name':u'Test Packages','versions':u'3'}
 
-	rpm_versions = [{'version':u'1.0','warning':u'test 1'},{'version':u'2.0','warning':u'test 2'}]
+	rpm_versions = [{'version':u'1.0','warnings':['test warning 1','test warning 2']},{'version':u'2.0','warning':u'test 2'}]
 	
 	return render_template('overview.html',rpm=test_rpm,versions=rpm_versions)
 
