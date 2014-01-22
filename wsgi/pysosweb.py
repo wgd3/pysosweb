@@ -112,7 +112,7 @@ def check(rpm, version):
 			if v.version == version:
 				print "Found valid RPM AND valid version"
 				# return template with version warnings
-				return jsonify( { 'status': u'success','kcs':query.kcs,'bz':query.bz,'warning':query.warning } )
+				return jsonify( { 'status': u'success','kcs':v.kcs,'bz':v.bz,'warning':v.warning } )
 		
 		print "Found valid RPM without a valid version"
 		# return page saying version doesn't exist, but RPM is valid
