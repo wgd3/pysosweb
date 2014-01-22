@@ -72,6 +72,7 @@ def rpm_overview(rpm_name):
 	versions = []
 	warnings = ""
 	formattedVersions = []
+	debugVersions = ''
 	# Return all db rows with 'name' matching 'rpm_name'
 	rpm_query = rpmdb.query.filter_by(name=rpm_name).all()
 
@@ -96,6 +97,12 @@ def rpm_overview(rpm_name):
 		summary = "{'version':u'"+v+"','warnings':["+warnings+"]}"
 		print summary
 		formattedVersions.append(summary)
+	# for debugging
+	debugStr = "["
+	for s in formattedVersions:
+		debugStr = debugStr + ","+s
+	print "debugStr: " + debugStr	
+
 	print str(formattedVersions)
 		
 	# Below is test data for use during development
