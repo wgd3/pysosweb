@@ -75,7 +75,7 @@ def rpm_overview(rpm_name):
 	for drpm in distinct_rpms:
 		# Find each versioni
 		distRPMname = str(drpm.name)
-		tempStr = tempStr + "'name':"+distRPMname
+		tempStr = tempStr + "'name':"+distRPMname+","
 		
 		versions = rpmdb.query.filter_by(name=distRPMname).all()
 		for v in versions:
@@ -88,7 +88,9 @@ def rpm_overview(rpm_name):
 		print "String for current DB: " + tempStr
 		jsonList.append(str("{"+tempStr+"}"))
 	
-	return render_template('overview.html',rpm=jsonify({'name':u'Test Package','version':u'1.2.3','warning':u'Test warning 1','warning':u'Test warning 2'}))
+		# Temporary, for testing
+		rpm=jsonify({'name':u'Test Package','version':u'1.2.3','warning':u'Test warning 1','warning':u'Test warning 2'})
+	return render_template('overview.html',rpm=rpm)
 
 
 @app.route('/check/<rpm>/<version>')
