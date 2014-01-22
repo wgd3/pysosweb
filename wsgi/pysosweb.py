@@ -65,7 +65,19 @@ def new():
 def rpm_overview(rpm_name):
 	'''
 	Need to pass 2 variables to the template: rpm (with name and version count), versions (with warnings and associated version number
-	'''	
+	'''
+
+	# Init variable
+	summary = []
+	rpm_query = rpmdb.query.distinct(name=rpm_name).all()
+
+	# Add name field to rpm summary
+	summary.append({'name':rpm_name})
+
+	# Add all versions and associated warnings
+	for r in rpm_query:
+		#do something
+		
 	test_rpm = {'name':u'Test Packages','versions':u'3'}
 
 	rpm_versions = [{'version':u'1.0','warnings':['test warning 1','test warning 2']},{'version':u'2.0','warnings':['test warning 1','test warning 2','test warning 3','test warning 4','test warning 5']}]
@@ -95,7 +107,7 @@ def check(rpm, version):
 		print "Setting version query"
 		versionQuery = rpmdb.query.filter_by(name=rpm).all()
 		for v in versionQuery:
-			print "looking for matching version"
+			print "looking for matching version: "+str(v.version)
 			if v.version == version:
 				print "Found valid RPM AND valid version"
 				# return template with version warnings
