@@ -65,7 +65,8 @@ def new():
 def rpm_overview(rpm_name):
 	# Find each unique rpm in db
 	distinct_rpms = rpmdb.query.distinct('name').all()
-	print "Found "+distinct_rpms+" distinct rpms."
+	for r in distinct_rpms:
+		print "Found RPM: "+str(r)
 		
 	# Make list to store all json objects
 	jsonList = []
