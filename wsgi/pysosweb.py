@@ -64,7 +64,7 @@ def new():
 @app.route('/rpm/<name>')
 def rpm_overview(name):
 	# Find each unique rpm in db
-	distinct_rpms = rpmdb.query(rpms.name).distinct()
+	distinct_rpms = rpmdb.query(rpmdb.name.distinct()).all()
 	
 	# Make list to store all json objects
 	jsonList = []
