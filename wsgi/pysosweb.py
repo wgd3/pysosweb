@@ -73,11 +73,12 @@ def rpm_overview(rpm_name):
 	tempStr = ""
 	# For each unique rpm
 	for drpm in distinct_rpms:
-		# Find each version
-		tempStr = tempStr + "'name':"+drpm.name
+		# Find each versioni
+		distRPMname = str(drpm.name)
+		tempStr = tempStr + "'name':"+distRPMname
 		
-		versions = rpmdb.query.filter_by(name=drpm.name).all()
-		for v in versions.version:
+		versions = rpmdb.query.filter_by(name=distRPMname).all()
+		for v in versions:
 			print "Found version: "+str(v)
 			tempStr = tempStr + "'version':"+v.version+","
 			# Find each warning
