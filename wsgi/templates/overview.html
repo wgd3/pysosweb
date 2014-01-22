@@ -5,17 +5,17 @@
 <div class="row">
 
 	<div class="page-header">
-		<h1>{{ rpm.name }}</h1><small>{{ versions|count }} versions found</small>
+		<h1>{{ rpm.name }} <small>{{ versions|count }} versions found</small></h1>
 	</div>
 	
 
 	<ul class="list-group">
 		{% for v in versions %}
 		<li class="list-group-item">
-			<span class="badge">{{ v.warnings|count }}</span>
-			<h3 class="list-group-item-heading">{{ v.number }}</h3>
+			<span class="badge">{{ v.warning|count }}</span>
+			<h3 class="list-group-item-heading">{{ v.version }}</h3>
 		</li>
-			{% for warning in v.warnings %}
+			{% for warning in v.warning %}
 			<li class="list-group-item">
 				<p class="list-group-item-text">{{ warning }}</p>
 			</li>
