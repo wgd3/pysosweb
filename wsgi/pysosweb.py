@@ -83,7 +83,7 @@ def rpm_overview(name):
 		print "String for current DB: " + tempStr
 		jsonList.append(str("{"+tempStr+"}"))
 	
-	return render_template('overview.html',rpm={'name':u'Test Package','version':u'1.2.3','warning':u'Test warning 1','warning',u'Test warning 2'})
+	return render_template('overview.html',rpm=jsonify({'name':u'Test Package','version':u'1.2.3','warning':u'Test warning 1','warning',u'Test warning 2'}))
 
 
 @app.route('/check/<rpm>/<version>')
