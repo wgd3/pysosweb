@@ -68,22 +68,39 @@ def rpm_overview(rpm_name):
 	'''
 
 	# Init variable
-	summary = []
-	rpm_query = rpmdb.query.distinct(name=rpm_name).all()
+	summary = ""
+	versions = []
+	warnings = ""
+	formattedVersions = []
+	# Return all db rows with 'name' matching 'rpm_name'
+	rpm_query = rpmdb.query.filter_by(name=rpm_name).all()
 
-	# Add name field to rpm summary
-	summary.append({'name':rpm_name})
-
-	# Add all versions and associated warnings
+	# Add all versions
 	for r in rpm_query:
-		#do something
-		print ""	
+		# find unique versions
+		if r.version not in versions:
+			print "Found version "+r.version+" not already in version list"
+			versions.append(r.version)
 	
+	# find warnings for each version
+	for v in versions:
+		for r in rpm_query:
+			# Look for matching version number in each original db query
+			if v in r.version:
+				print "found entry for version "+v
+				warnings = warnings = "'"+v+"',"
+				print warnings
+				
+		summary = "{'version':u'"+v+"','warnings':["+warnings+"]}"
+		print summary
+		formattedVersions.append(summery)
+	
+	# Below is test data for use during development
 	test_rpm = {'name':u'Test Packages','versions':u'3'}
 
 	rpm_versions = [{'version':u'1.0','warnings':['test warning 1','test warning 2']},{'version':u'2.0','warnings':['test warning 1','test warning 2','test warning 3','test warning 4','test warning 5']}]
 	
-	return render_template('overview.html',rpm=test_rpm,versions=rpm_versions)
+	return render_template('overview.html',rpm=rpm_name,versions=formattedVersions)
 
 
 @app.route('/check/<rpm>/<version>')
