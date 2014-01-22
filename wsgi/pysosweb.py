@@ -66,9 +66,9 @@ def rpm_overview(rpm_name):
 	'''
 	Need to pass 2 variables to the template: rpm (with name and version count), versions (with warnings and associated version number
 	'''	
-	test_rpm = {'name':u'Test Packages','versions':u'3'}
+	test_rpm = jsonify({'name':u'Test Packages','versions':u'3'})
 
-	rpm_versions = [{'version':u'1.0','warning':u'test 1'},{'version':u'2.0','warning':u'test 2'}]
+	rpm_versions = jsonify([{'version':u'1.0','warning':u'test 1'},{'version':u'2.0','warning':u'test 2'}])
 	
 	return render_template('overview.html',rpm=test_rpm,versions=rpm_versions)
 
