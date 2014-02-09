@@ -13,7 +13,7 @@ $(document).ready(function() {
 		$(this).hide()
 	});
 
-	$(".row-config").click(function() {
+	$(".row-config").each().children().click(function() {
 		// should store the row this came from for reference
 		var curRow = $(this).parent();
 		
