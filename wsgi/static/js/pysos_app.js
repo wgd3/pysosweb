@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 	// variable for new row
-	var editRow = "<tr class="danger"><td>Test for edit row</td></tr>";
+	var editRow = "<tr class=\"danger\"><td>Test for edit row</td></tr>";
 
 	// insert hidden row after each visible row
 	$("tbody").children().filter("tr").each(function() {
