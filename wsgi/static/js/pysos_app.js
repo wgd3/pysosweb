@@ -5,12 +5,14 @@ $(document).ready(function() {
 
 	// insert hidden row after each visible row
 	$("tbody").children().filter("tr").each(function() {
-		$(this).after(editRow)
+		$(this).after(editRow);
+		console.log("Added new hidden row")
 	});
 
 	// hide all new rows
 	$(".danger").each(function() {
-		$(this).hide()
+		$(this).hide();
+		console.log("Hiding edit row");
 	});
 
 	$(".row-config").each().children().click(function() {
