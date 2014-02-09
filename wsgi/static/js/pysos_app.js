@@ -15,11 +15,19 @@ $(document).ready(function() {
 		console.log("Hiding edit row");
 	});
 
-	$(".row-config").each().children().click(function() {
-		// should store the row this came from for reference
-		var curRow = $(this).parent();
+	$(".editRow").click(function() {
+		console.log("User clicked on cog");
 		
-		// slide down editRow
-		curRow.slideDown()
+		// should store the row this came from for reference
+		var curRow = $(this).parents().filter("tr");
+		console.log("Set curRow");		
+
+		// find edit row for curRow
+		var nextRow = curRow.next(".danger");
+		console.log("Found edit row");
+
+		// slide down edit row
+		nextRow.slideDown();
+		
 	});
 });
