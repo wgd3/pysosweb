@@ -42,10 +42,29 @@ def new():
 
     if request.method == 'POST':
 	try:
-		# Set time
+		# Form validation and error reporting via flashed messages
+
+		# Set time automatically
 		newDate = date.today()
 		
+		pkgName = ' '
+		if request.form['name'] == '':
+			flash(u'Not a valid package name','error')
+			# attempting to break the loop, preventing the record from being added
+			break
+		else:
+			pkgName = request.form['name']
+
+		pkgVer = ' '
+		if request.form['version'] == '':
+			flash(u'Not a valid package version','error')
+			# attempting to break the loop, preventing the record from being added
+			break
+		else:
+			pkgVer = request.form['version']
+
 		kcsNumber = ' '
+
 		if request.form['kcs'] == '':
 			#invalidKCS = True
 			flash(u'Did not find valid KCS number','error')
@@ -59,7 +78,8 @@ def new():
 		else:
 			bzNumber = request.form['bz']
 
-		entry = rpmdb(request.form['name'],request.form['version'],request.form['warning'],kcsNumber,bzNumber,newDate.isoformat(),request.form['reporter'])
+		
+		entry = rpmdb(pkgName,request.form['version'],request.form['warning'],kcsNumber,bzNumber,newDate.isoformat(),request.form['reporter'])
 		db.session.add(entry)
 		db.session.commit()
 		flash(u'Added record successfully','message')

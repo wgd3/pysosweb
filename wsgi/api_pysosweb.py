@@ -151,6 +151,45 @@ def check(rpm, version):
 
 	return redirect(url_for('list'))
 
+@app.route('/api/check/<rpm>/<version>')
+def check(rpm, version):
+
+	# Check user agent to decide between JSON data and HTML response
+	userAgentString = request.headers.get('User-Agent')
+	print "Found " + userAgentString +" as user agent."
+
+	isJSONRequest = False
+	if "python" in userAgentString:
+		isJSONRequest = True
+
+	validRPM = False
+	query = rpmdb.query.filter_by(name=rpm).first()	
+
+	if query is not None:
+		print "Found valid rpm, switching to True"
+		validRPM = True
+
+	if validRPM:
+		print "Setting version query"
+		versionQuery = rpmdb.query.filter_by(name=rpm).all()
+		for v in versionQuery:
+			print "looking for matching version: "+str(v.version)
+			if v.version == version:
+				print "Found valid RPM AND valid version"
+				# return template with version warnings
+				return jsonify( { 'status': u'success','kcs':v.kcs,'bz':v.bz,'warning':v.warning } )
+		
+		print "Found valid RPM without a valid version"
+		# return page saying version doesn't exist, but RPM is valid
+		return jsonify( { 'status': u'fail - no entries' } )
+	else:
+		print "RPM not found in database"
+		# return template with invalid RPM syntax
+		return jsonify( { 'status':u'fail - invalid rpm'} )
+
+	return redirect(url_for('list'))
+
+
 #class WarningForm(Form):
 #	name = StringField(u'Name', [validators.InputRequired()])
 #	version = StringField(u'Version', [validators.InputRequired()])
