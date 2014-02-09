@@ -67,7 +67,12 @@ def new():
 		#return redirect(url_for('list'))    
 	except Exception as e:
 		flash(u'Something went wrong with your request, not adding record','error')
-		
+        
+	return render_template('new.html')
+    elif request.method == 'GET':		
+        # Passing no flashes to page, just render template
+	return render_template('new.html')
+
     return render_template('new.html')
 
 @app.route('/rpm/<rpm_name>')
