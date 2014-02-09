@@ -51,7 +51,7 @@ def new():
 		if request.form['name'] == '':
 			flash(u'Not a valid package name','error')
 			# attempting to break the loop, preventing the record from being added
-			break
+			#break
 		else:
 			pkgName = request.form['name']
 
@@ -59,7 +59,7 @@ def new():
 		if request.form['version'] == '':
 			flash(u'Not a valid package version','error')
 			# attempting to break the loop, preventing the record from being added
-			break
+			#break
 		else:
 			pkgVer = request.form['version']
 
