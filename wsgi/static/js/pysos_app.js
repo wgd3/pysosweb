@@ -15,19 +15,22 @@ $(document).ready(function() {
 		console.log("Hiding edit row");
 	});
 
-	$(".editRow").click(function() {
-		console.log("User clicked on cog");
+	$(".glyphicon-pencil").click(function() {
+		console.log("User clicked on glyph");
 		
 		// should store the row this came from for reference
 		var curRow = $(this).parents().filter("tr");
 		console.log("Set curRow");		
+
+		// set background color to indicate edit mode
+		curRow.addClass("editing info");
 
 		// find edit row for curRow
 		var nextRow = curRow.next(".danger");
 		console.log("Found edit row");
 
 		// slide down edit row
-		nextRow.slideToggle();
+		//nextRow.slideToggle();
 		
 	});
 });
