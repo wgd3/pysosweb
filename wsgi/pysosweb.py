@@ -45,19 +45,28 @@ def new():
 		# Set time
 		newDate = date.today()
 		
+		kcsNumber = ' '
 		if request.form['kcs'] == '':
-			invalidKCS = True
+			#invalidKCS = True
+			flash(u'Did not find valid KCS number','error')
+		else:
+			kcsNumber = request.form['kcs']
 
+		bzNumber = ' '
 		if request.form['bz'] == '':
-			invalidBZ = True
+			#invalidBZ = True
+			flash(u'Did not find vald BZ number','error')
+		else:
+			bzNumber = request.form['bz']
 
-
-		entry = rpmdb(request.form['name'],request.form['version'],request.form['warning'],request.form['kcs'],request.form['bz'],newDate.isoformat(),request.form['reporter'])
+		entry = rpmdb(request.form['name'],request.form['version'],request.form['warning'],kcsNumber,bzNumber,newDate.isoformat(),request.form['reporter'])
 		db.session.add(entry)
 		db.session.commit()
-		return redirect(url_for('list'))    
+		flash(u'Added record successfully','message')
+		# Commenting out the return statement here so that any flashed messages added above get passed to the 'new.html' page
+		#return redirect(url_for('list'))    
 	except Exception as e:
-		flash("Something went wrong with your request")
+		flash(u'Something went wrong with your request, not adding record','error')
 		
     return render_template('new.html')
 
