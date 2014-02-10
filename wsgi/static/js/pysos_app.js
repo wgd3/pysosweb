@@ -79,6 +79,7 @@ $(document).ready(function() {
 
 		// get all input boxes, see if they have data
 		var newData = newRow.find("input");
+		console.log("newData has the following length: " + newData.length);
 
 		// cycle through input boxes looking for new text
 		var updatedData = false;
