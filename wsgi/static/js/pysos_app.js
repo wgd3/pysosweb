@@ -13,6 +13,13 @@ $(document).ready(function() {
 		var curRow = $(this).parents().filter("tr");
 		console.log("Set curRow");		
 
+		// check to see if open row was clicked to close
+		if (curRow.hasClass("editing"))
+			{
+			curRow.next(".editRow").toggle();
+			return true
+			}
+
 		// first hide any rows that currently have 'editing' class. row should only have this if open
 		$(".editing").next(".editRow").toggle();
 		console.log("Should be hiding any open rows");
