@@ -18,29 +18,20 @@ $(document).ready(function() {
 			{
 			curRow.next(".editRow").toggle();
 			curRow.removeClass("editing");
-			// break loop
-			return true
+			console.log("Detected that we are closing the currently open row");
 			}
+		else // current row isn't the row being currently edited
+			{
+			$(".editing").next(".editRow").toggle();
+	
+			$(".editing").removeClass("editing");
 
-		// first hide any rows that currently have 'editing' class. row should only have this if open
-		$(".editing").next(".editRow").toggle();
-		console.log("Should be hiding any open rows");
+			var nextRow = curRow.next(".editRow");
 
-		// remove 'editing' class from all rows since they should all be closed at this point
-		$(".editing").each().removeClass(".editing");
-		console.log("removing editing class from whatever rows have it");
+			curRow.addClass("editing");
 
-		// find edit row for curRow
-		var nextRow = curRow.next(".editRow");
-		console.log("Found edit row");
-
-		// slide down edit row
-		nextRow.toggle();
-		console.log("showing edit row");
-
-		// add 'editing' class since this row will now be visible
-		curRow.addClass("editing");
-		console.log("added editing class to current open edit row");
+			nextRow.toggle()
+			}
 
 	});
 });
