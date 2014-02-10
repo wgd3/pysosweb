@@ -119,7 +119,7 @@ def delete(rpm_name):
 		else:
 			print "Found record for package: " + package_record.name
 			db.session.delete(package_record)
-			db.session.commit()i
+			db.session.commit()
 			flash(u'Successfully deleted the package '+rpm_name+' from the database.','message')
 	except:
 		print "Ran into issue querying database"
