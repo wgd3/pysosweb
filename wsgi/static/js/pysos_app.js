@@ -104,17 +104,17 @@ $(document).ready(function() {
 						console.log("Found new package warning: " + newText);
 						newWarning = true;
 					}
-			} else {
-				console.log("User clicked check mark glyph with no new data in boxes, closing edit row");
-				// close the editing row - same action as if pencil glyph is clicked
-				newRow.toggle();
-				curRow.removeClass("editing")
-			}
-			}
+			}			}
 
 		// if there's new data, do something with it
 		if (updatedData) {
 			console.log("Hey, there's updated data here. Do something with it!")
+		} else {
+			console.log("User clicked check mark glyph with no new data in boxes, closing edit row");
+			// close the editing row - same action as if pencil glyph is clicked
+			newRow.toggle();
+			curRow.removeClass("editing")
 		}
+
 	});
 });
