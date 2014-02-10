@@ -65,7 +65,7 @@ def new():
 		if request.form['warning'] == '':
 			flash(u'No warning entered','error')
 			validRecord=False
-		else
+		else:
 			pkgWarning = request.form['warning']
 
 		kcsNumber = ' '
