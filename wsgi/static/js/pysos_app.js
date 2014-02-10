@@ -63,4 +63,58 @@ $(document).ready(function() {
 			// do nothing
 		}
 	});
+
+	// add listener to all checkmark glyphs
+	$(".glyphicon-ok").click(function() {
+		console.log("User clicked on OK glyph");
+
+		// get current row
+		var curRow = $(".editing");
+		
+		// get the row that has the new data in it
+		// row with input fields always has the 'warning' class used by bootstrap for background coloring
+		var newRow = $(this).parents().filter(".warning");
+
+		// get all input boxes, see if they have data
+		var newData = newRow.find("input");
+
+		// cycle through input boxes looking for new text
+		var updatedData = false;
+		var newName = false;
+		var newVersion = false;
+		var newWarning = false;
+
+		for (i=0;i<newData.lenth;i++)
+			{
+			var newText = newData[i].val();
+			if newText != ''
+				{
+				updatedData = true;
+				switch(i)
+					{
+					case 0:
+						console.log("Found new package name: " + newText);
+						newName = true;
+						break;
+					case 1:
+						console.log("Found new package version: " + newText);		
+						newVersion = true;
+						break;
+					case 2:
+						console.log("Found new package warning: " + newText);
+						newWarning = true;
+					}
+			} else {
+				console.log("User clicked check mark glyph with no new data in boxes, closing edit row");
+				// close the editing row - same action as if pencil glyph is clicked
+				newRow.toggle();
+				curRow.removeClass("editing")
+			}
+			}
+
+		// if there's new data, do something with it
+		if updatedData {
+			console.log("Hey, there's updated data here. Do something with it!")
+		}
+	});
 });
