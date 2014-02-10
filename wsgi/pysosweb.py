@@ -117,6 +117,10 @@ def delete(rpm_name):
 			print "No records returned from your query using package named: " + rpm_name
 		else:
 			print "Found record for package: " + package_record.name
+	except:
+		print "Ran into issue querying database"
+		return False
+	return True
 
 @app.route('/rpm/<rpm_name>')
 def rpm_overview(rpm_name):
