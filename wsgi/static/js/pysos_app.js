@@ -1,15 +1,6 @@
 $(document).ready(function() {
 
-	// variable for new row
-	// var editRow = "<tr class=\"danger\"><td><span class=\"glyphicon glyphicon-ok col-md-6\"></span><span class=\"glyphicon glyphicon-remove col-md-6\"></span></td></tr>";
-
-	// insert hidden row after each visible row
-	//$("tbody").children().filter("tr").each(function() {
-	//	$(this).after(editRow);
-	//	console.log("Added hidden rows")
-	//});
-
-	// hide all new rows
+	// hide all edit rows
 	$(".editRow").each(function() {
 		$(this).hide();
 		console.log("Hiding edit rows");
@@ -22,15 +13,25 @@ $(document).ready(function() {
 		var curRow = $(this).parents().filter("tr");
 		console.log("Set curRow");		
 
-		// add new class just in case we need it to identify the row later
-		curRow.addClass("editing");
+		// first hide any rows that currently have 'editing' class. row should only have this if open
+		$(".editing").toggle();
+		console.log("Should be hiding any open rows");
+
+		// remove 'editing' class from all rows since they should all be closed at this point
+		$(".editing").removeClass(".editing");
+		console.log("removing editing class from whatever rows have it");
 
 		// find edit row for curRow
 		var nextRow = curRow.next(".editRow");
 		console.log("Found edit row");
 
 		// slide down edit row
-		nextRow.slideToggle();
-		
+		nextRow.toggle();
+		console.log("showing edit row");
+
+		// add 'editing' class since this row will now be visible
+		curRow.addClass("editing");
+		console.log("added editing class to current open edit row");
+
 	});
 });
