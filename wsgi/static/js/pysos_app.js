@@ -99,8 +99,7 @@ $(document).ready(function() {
 		for (i=0;i<newData.length;i++)
 			{
 			console.log("Entering loop with index: " + i);
-			var newField = newData[i];
-			var newText = newField.text();
+			var newTest = newData[i];
 			console.log("Evaluating new text: " + newText);
 			if (newText != '')
 				{
