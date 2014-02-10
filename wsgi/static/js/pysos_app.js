@@ -14,7 +14,7 @@ $(document).ready(function() {
 		console.log("Set curRow");		
 
 		// first hide any rows that currently have 'editing' class. row should only have this if open
-		$(".editing").toggle();
+		$(".editing").next(".editRow").toggle();
 		console.log("Should be hiding any open rows");
 
 		// remove 'editing' class from all rows since they should all be closed at this point
