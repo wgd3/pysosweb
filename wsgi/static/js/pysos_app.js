@@ -53,5 +53,14 @@ $(document).ready(function() {
 		var packageName = curRow.children().eq(1).text()
 		console.log("User is trying to delete package " + packageName);
 
+		// prompt user for confirmation
+		if (confirm('Are you sure you want to delete the package ' + packageName)) {
+			console.log("User has confirmed deletion")
+
+			// go ahead and attempt to remove from the database
+		} else {
+			console.log("User has chosen not to confirm deletion")
+			// do nothing
+		}
 	});
 });
