@@ -115,8 +115,10 @@ def delete(rpm_name):
 		package_record = rpmdb.query.filter_by(name=rpm_name).first()
 		if package_record is None:
 			print "No records returned from your query using package named: " + rpm_name
+			flash(u'Did not delete any records, nothing matched your query for '+rpm_name,'error')
 		else:
 			print "Found record for package: " + package_record.name
+			flash(u'Found record for package, will delete record once Wallace writes that code...','message')
 	except:
 		print "Ran into issue querying database"
 		
