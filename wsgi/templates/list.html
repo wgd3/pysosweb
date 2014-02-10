@@ -45,7 +45,16 @@
 							<td>{{ item.reporter }}</td>
 							<td>{{ item.report_time }}</td>
 							</tr>
-							{% endfor %}
+							<tr class="warning editRow">
+								<td class="col-md-1">
+									<span class="col-md-6 glyphicon glyphicon-ok"></span>
+									<span class="col-md-6 glyphicon glyphicon-remove"></span>
+								</td>
+								<td class="col-md-2">
+									<input type="text" class="form-control editBox">
+								</td>
+							</tr>
+						{% endfor %}
 						{% else %}
 							<tr>
 							<td>RPM #1</td>

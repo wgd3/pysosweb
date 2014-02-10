@@ -1,18 +1,18 @@
 $(document).ready(function() {
 
 	// variable for new row
-	var editRow = "<tr class=\"danger\"><td><span class=\"glyphicon glyphicon-ok col-md-6\"></span><span class=\"glyphicon glyphicon-remove col-md-6\"></span></td></tr>";
+	// var editRow = "<tr class=\"danger\"><td><span class=\"glyphicon glyphicon-ok col-md-6\"></span><span class=\"glyphicon glyphicon-remove col-md-6\"></span></td></tr>";
 
 	// insert hidden row after each visible row
-	$("tbody").children().filter("tr").each(function() {
-		$(this).after(editRow);
-		console.log("Added new hidden row")
-	});
+	//$("tbody").children().filter("tr").each(function() {
+	//	$(this).after(editRow);
+	//	console.log("Added hidden rows")
+	//});
 
 	// hide all new rows
-	$(".danger").each(function() {
+	$(".editRow").each(function() {
 		$(this).hide();
-		console.log("Hiding edit row");
+		console.log("Hiding edit rows");
 	});
 
 	$(".glyphicon-pencil").click(function() {
@@ -22,17 +22,15 @@ $(document).ready(function() {
 		var curRow = $(this).parents().filter("tr");
 		console.log("Set curRow");		
 
-		// set background color to indicate edit mode
 		// add new class just in case we need it to identify the row later
 		curRow.addClass("editing");
-		curRow.css("background-color","yellow");
 
 		// find edit row for curRow
-		var nextRow = curRow.next(".danger");
+		var nextRow = curRow.next(".editRow");
 		console.log("Found edit row");
 
 		// slide down edit row
-		//nextRow.slideToggle();
+		nextRow.slideToggle();
 		
 	});
 });
