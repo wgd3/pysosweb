@@ -119,8 +119,8 @@ def delete(rpm_name):
 			print "Found record for package: " + package_record.name
 	except:
 		print "Ran into issue querying database"
-		return False
-	return True
+		
+	return redirect(url_for('list'))
 
 @app.route('/rpm/<rpm_name>')
 def rpm_overview(rpm_name):
