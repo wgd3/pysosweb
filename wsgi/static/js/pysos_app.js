@@ -17,6 +17,8 @@ $(document).ready(function() {
 		if (curRow.hasClass("editing"))
 			{
 			curRow.next(".editRow").toggle();
+			curRow.removeClass("editing");
+			// break loop
 			return true
 			}
 
