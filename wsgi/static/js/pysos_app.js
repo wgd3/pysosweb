@@ -87,7 +87,7 @@ $(document).ready(function() {
 		var newVersion = false;
 		var newWarning = false;
 
-		for (i=0;i<newData.lenth;i++)
+		for (i=0;i<newData.length;i++)
 			{
 			console.log("Entering loop with index: " + i);
 			var newText = newData[i].val();
