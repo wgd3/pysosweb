@@ -89,6 +89,7 @@ $(document).ready(function() {
 
 		for (i=0;i<newData.lenth;i++)
 			{
+			console.log("Entering loop with index: " + i);
 			var newText = newData[i].val();
 			console.log("Evaluating new text: " + newText);
 			if (newText != '')
@@ -108,7 +109,8 @@ $(document).ready(function() {
 						console.log("Found new package warning: " + newText);
 						newWarning = true;
 					}
-			}			}
+			}
+			}
 
 		// if there's new data, do something with it
 		if (updatedData) {
