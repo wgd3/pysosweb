@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 	// variable for new row
-	var editRow = "<tr class=\"danger\"><td class=\"col-md-1\"><span class=\"glyphicon glyphicon-ok\"></span><span class=\"glyphicon glyphicon-remove\"></span></td></tr>";
+	var editRow = "<tr class=\"danger\"><td><span class=\"glyphicon glyphicon-ok col-md-6\"></span><span class=\"glyphicon glyphicon-remove col-md-6\"></span></td></tr>";
 
 	// insert hidden row after each visible row
 	$("tbody").children().filter("tr").each(function() {
@@ -23,7 +23,9 @@ $(document).ready(function() {
 		console.log("Set curRow");		
 
 		// set background color to indicate edit mode
-		curRow.addClass("editing info");
+		// add new class just in case we need it to identify the row later
+		curRow.addClass("editing");
+		curRow.css("background-color","yellow");
 
 		// find edit row for curRow
 		var nextRow = curRow.next(".danger");
