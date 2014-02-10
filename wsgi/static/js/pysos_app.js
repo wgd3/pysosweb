@@ -113,7 +113,7 @@ $(document).ready(function() {
 			}
 
 		// if there's new data, do something with it
-		if updatedData {
+		if (updatedData) {
 			console.log("Hey, there's updated data here. Do something with it!")
 		}
 	});
