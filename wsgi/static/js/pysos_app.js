@@ -27,7 +27,7 @@ $(document).ready(function() {
 		console.log("Should be hiding any open rows");
 
 		// remove 'editing' class from all rows since they should all be closed at this point
-		$(".editing").removeClass(".editing");
+		$(".editing").each().removeClass(".editing");
 		console.log("removing editing class from whatever rows have it");
 
 		// find edit row for curRow
