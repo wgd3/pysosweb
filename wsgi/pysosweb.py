@@ -118,9 +118,12 @@ def delete(rpm_name):
 			flash(u'Did not delete any records, nothing matched your query for '+rpm_name,'error')
 		else:
 			print "Found record for package: " + package_record.name
-			flash(u'Found record for package, will delete record once Wallace writes that code...','message')
+			db.session.delete(package_record)
+			db.session.commit()i
+			flash(u'Successfully deleted the package '+rpm_name+' from the database.','message')
 	except:
 		print "Ran into issue querying database"
+		flash(u'Ran into issue connecting to database, no action taken','error')
 		
 	return redirect(url_for('list'))
 
