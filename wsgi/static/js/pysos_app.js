@@ -43,7 +43,7 @@ $(document).ready(function() {
 
 	// add listeners to all 'X' glyphs for deletion
 	$(".glyphicon-remove").click(function() {
-		console.log("User click remove glyph, attempting deletion");
+		console.log("User clicked on remove glyph, attempting deletion");
 
 		// get current row - should coincide with the row currently labelled "editing" since that
 		// is activated when the editRow appears
@@ -51,7 +51,7 @@ $(document).ready(function() {
 
 		// find package name in second column (children() returns all td elements)
 		var packageName = curRow.children().eq(1).text()
-		console.log("User is trying to delete package " + $(packageName));
+		console.log("User is trying to delete package " +i packageName);
 
 	});
 });
