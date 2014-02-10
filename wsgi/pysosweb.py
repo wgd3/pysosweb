@@ -35,11 +35,9 @@ def list():
 
 @app.route('/new', methods=['GET','POST'])
 def new():
-    
-    error = None
-    invalidKCS = False
-    invalidBZ = False
-
+   
+    validRecord = True
+	 
     if request.method == 'POST':
 	try:
 		# Form validation and error reporting via flashed messages
@@ -51,7 +49,7 @@ def new():
 		if request.form['name'] == '':
 			flash(u'Not a valid package name','error')
 			# attempting to break the loop, preventing the record from being added
-			#break
+			validRecord=False
 		else:
 			pkgName = request.form['name']
 
@@ -59,15 +57,22 @@ def new():
 		if request.form['version'] == '':
 			flash(u'Not a valid package version','error')
 			# attempting to break the loop, preventing the record from being added
-			#break
+			validRecord = False
 		else:
 			pkgVer = request.form['version']
 
-		kcsNumber = ' '
+		pkgWarning = ' '
+		if request.form['warning'] == '':
+			flash(u'No warning entered','error')
+			validRecord=False
+		else
+			pkgWarning = request.form['warning']
 
+		kcsNumber = ' '
 		if request.form['kcs'] == '':
 			#invalidKCS = True
 			flash(u'Did not find valid KCS number','error')
+			validRecord = False
 		else:
 			kcsNumber = request.form['kcs']
 
@@ -75,24 +80,30 @@ def new():
 		if request.form['bz'] == '':
 			#invalidBZ = True
 			flash(u'Did not find vald BZ number','error')
+			validRecord = False
 		else:
 			bzNumber = request.form['bz']
 
-		
-		entry = rpmdb(pkgName,request.form['version'],request.form['warning'],kcsNumber,bzNumber,newDate.isoformat(),request.form['reporter'])
-		db.session.add(entry)
-		db.session.commit()
-		flash(u'Added record successfully','message')
-		# Commenting out the return statement here so that any flashed messages added above get passed to the 'new.html' page
-		#return redirect(url_for('list'))    
+		if validRecord:
+			entry = rpmdb(pkgName,pkgVer,pkgWarning,kcsNumber,bzNumber,newDate.isoformat(),request.form['reporter'])
+			db.session.add(entry)
+			db.session.commit()
+			flash(u'Added record successfully','message')
+		else:
+			flash(u'One or more errors found, not saving record','error')
+	# if the above fails, then something outside of invalid fields has happened	
 	except Exception as e:
-		flash(u'Something went wrong with your request, not adding record','error')
+		flash(u'Unknown exception caught, not adding record','error')
         
+	# no matter what, reload the page with whatever flashed messages have been reported
 	return render_template('new.html')
+    
+    # check to see if this is the initial request to the page (no flahsed messages)
     elif request.method == 'GET':		
         # Passing no flashes to page, just render template
 	return render_template('new.html')
 
+    # for safety's sake I'm leaving this in here, though there shouldn't ever be a reason for this line to run
     return render_template('new.html')
 
 @app.route('/rpm/<rpm_name>')
