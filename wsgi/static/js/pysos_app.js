@@ -58,7 +58,7 @@ $(document).ready(function() {
 			console.log("User has confirmed deletion")
 
 			// go ahead and attempt to remove from the database
-			window.location.href = 'pysosweb-wdaniel.itos.redhat.com/delete/'+packageName
+			window.location.href = '/delete/'+packageName
 		} else {
 			console.log("User has chosen not to confirm deletion")
 			// leave edit row open for more edits
