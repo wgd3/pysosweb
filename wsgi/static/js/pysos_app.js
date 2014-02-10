@@ -58,9 +58,11 @@ $(document).ready(function() {
 			console.log("User has confirmed deletion")
 
 			// go ahead and attempt to remove from the database
+			//
+			// not removing row since this will most likely lead to a page reload
 		} else {
 			console.log("User has chosen not to confirm deletion")
-			// do nothing
+			// leave edit row open for more edits
 		}
 	});
 
@@ -87,6 +89,7 @@ $(document).ready(function() {
 		for (i=0;i<newData.lenth;i++)
 			{
 			var newText = newData[i].val();
+			console.log("Evaluating new text: " + newText);
 			if (newText != '')
 				{
 				updatedData = true;
