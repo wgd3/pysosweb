@@ -99,7 +99,7 @@ $(document).ready(function() {
 		for (i=0;i<newData.length;i++)
 			{
 			console.log("Entering loop with index: " + i);
-			var newTest = newData[i];
+			var newText = newData[i];
 			console.log("Evaluating new text: " + newText);
 			if (newText != '')
 				{
