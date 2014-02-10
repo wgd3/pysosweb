@@ -58,8 +58,7 @@ $(document).ready(function() {
 			console.log("User has confirmed deletion")
 
 			// go ahead and attempt to remove from the database
-			//
-			// not removing row since this will most likely lead to a page reload
+			window.location.href = 'pysosweb-wdaniel.itos.redhat.com/delete/'+packageName
 		} else {
 			console.log("User has chosen not to confirm deletion")
 			// leave edit row open for more edits
