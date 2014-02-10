@@ -106,6 +106,18 @@ def new():
     # for safety's sake I'm leaving this in here, though there shouldn't ever be a reason for this line to run
     return render_template('new.html')
 
+@app.route('/delete/<rpm_name>')
+def delete(rpm_name):
+	'''
+	Need to find a way to prevent scripting in such a way that the database could be emptied
+	'''
+	try:
+		package_record = rpmdb.query.filter_by(name=rpm_name).first()
+		if package_record is None:
+			print "No records returned from your query using package named: " + rpm_name
+		else:
+			print "Found record for package: " + package_record.name
+
 @app.route('/rpm/<rpm_name>')
 def rpm_overview(rpm_name):
 	'''
