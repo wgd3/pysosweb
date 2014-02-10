@@ -51,7 +51,7 @@ $(document).ready(function() {
 
 		// find package name in second column (children() returns all td elements)
 		var packageName = curRow.children().eq(1).text()
-		console.log("User is trying to delete package " +i packageName);
+		console.log("User is trying to delete package " + packageName);
 
 	});
 });
