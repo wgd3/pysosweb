@@ -80,9 +80,14 @@ $(document).ready(function() {
 		// get all input boxes, see if they have data
 		var newData = new Array();
 		var newData = newRow.find("input").each(function() {
-			console.log("Looking for text input: " + $(this).text());
-			
+			console.log("Looking for text input: " + $(this).val());
+			newData.push($(this).val());
+			for (i=0;i<newData.length;i++) {
+				console.log(newData[i])
+			}	
 		});
+
+		
 		console.log("newData has the following length: " + newData.length);
 
 		// cycle through input boxes looking for new text
