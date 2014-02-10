@@ -78,7 +78,11 @@ $(document).ready(function() {
 		var newRow = $(this).parents().filter(".warning");
 
 		// get all input boxes, see if they have data
-		var newData = newRow.find("input");
+		var newData = new Array();
+		var newData = newRow.find("input").each(function() {
+			console.log("Looking for text input: " + $(this).text());
+			
+		});
 		console.log("newData has the following length: " + newData.length);
 
 		// cycle through input boxes looking for new text
