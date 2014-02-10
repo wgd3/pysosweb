@@ -87,7 +87,7 @@ $(document).ready(function() {
 		for (i=0;i<newData.lenth;i++)
 			{
 			var newText = newData[i].val();
-			if newText != ''
+			if (newText != '')
 				{
 				updatedData = true;
 				switch(i)
