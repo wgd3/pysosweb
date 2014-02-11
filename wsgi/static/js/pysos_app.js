@@ -104,7 +104,7 @@ $(document).ready(function() {
 			{
 			console.log("Entering loop with index: " + i);
 			var newText = newData[i];
-			console.log("Evaluating new text: " + newText);
+			console.log("Evaluating new text: " + newText.text());
 			if (newText != '')
 				{
 				updatedData = true;
