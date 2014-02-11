@@ -251,11 +251,6 @@ def check(rpm, version):
 
 	return redirect(url_for('list'))
 
-#class WarningForm(Form):
-#	name = StringField(u'Name', [validators.InputRequired()])
-#	version = StringField(u'Version', [validators.InputRequired()])
-#	warning = TextAreaField(u'Warninig', [validators.InputRequired()])
-#	kcs = IntegerField(u'KCS', [])
 
 if __name__ == "__main__":
     app.run()

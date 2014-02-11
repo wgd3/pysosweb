@@ -148,7 +148,7 @@ $(document).ready(function() {
 				url_string = url_string + newData[2].value+'/'
 				console.log("updating update url: "+url_string)
 			} else {
-				url_string = url_string + 'null/'
+				url_string = url_string + 'null'
 			}
 			window.location.href = url_string
 		} else {
