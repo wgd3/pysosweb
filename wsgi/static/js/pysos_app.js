@@ -106,7 +106,7 @@ $(document).ready(function() {
 			console.log("Entering loop with index: " + i);
 			var newText = newData[i];
 			console.log("Evaluating new text: " + newText.value);
-			if (newText != '')
+			if (newText.value != '')
 				{
 				updatedData = true;
 				switch(i)
@@ -125,6 +125,7 @@ $(document).ready(function() {
 					}
 			}
 			}
+
 
 		// if there's new data, do something with it
 		if (updatedData) {
