@@ -105,22 +105,22 @@ $(document).ready(function() {
 			{
 			console.log("Entering loop with index: " + i);
 			var newText = newData[i];
-			console.log("Evaluating new text: " + newText);
+			console.log("Evaluating new text: " + newText.value);
 			if (newText != '')
 				{
 				updatedData = true;
 				switch(i)
 					{
 					case 0:
-						console.log("Found new package name: " + newText);
+						console.log("Found new package name: " + newText.value);
 						newName = true;
 						break;
 					case 1:
-						console.log("Found new package version: " + newText);		
+						console.log("Found new package version: " + newText.value);		
 						newVersion = true;
 						break;
 					case 2:
-						console.log("Found new package warning: " + newText);
+						console.log("Found new package warning: " + newText.value);
 						newWarning = true;
 					}
 			}
@@ -132,19 +132,19 @@ $(document).ready(function() {
 			// maybe use a /update page?
 			var url_string = '/update/'+origName+'/'
 			if (newName) {
-				url_string = url_string + newData[0]+'/'
+				url_string = url_string + newData[0].value+'/'
 				console.log("updating update url: "+url_string)
 			} else {
 				url_string = url_string + 'null/'
 			}
 			if (newVersion) {
-				url_string = url_string + newData[1]+'/'
+				url_string = url_string + newData[1].value+'/'
 				console.log("updating update url: "+url_string)
 			} else {
 				url_string = url_string + 'null/'
 			}
 			if (newWarning) {
-				url_string = url_string + newData[2]+'/'
+				url_string = url_string + newData[2].value+'/'
 				console.log("updating update url: "+url_string)
 			} else {
 				url_string = url_string + 'null/'
