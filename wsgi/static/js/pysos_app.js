@@ -145,7 +145,7 @@ $(document).ready(function() {
 				url_string = url_string + 'null/'
 			}
 			if (newWarning) {
-				url_string = url_string + newData[2].value+'/'
+				url_string = url_string + newData[2].value
 				console.log("updating update url: "+url_string)
 			} else {
 				url_string = url_string + 'null'
