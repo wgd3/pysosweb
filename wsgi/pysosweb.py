@@ -106,6 +106,40 @@ def new():
     # for safety's sake I'm leaving this in here, though there shouldn't ever be a reason for this line to run
     return render_template('new.html')
 
+@app.route('/update/<rpm_name>/<new_name>/<version>/<warning>')
+def update(rpm_name,new_name,version,warning):
+	'''
+	Take variables in URL
+	'''
+	try:
+		rpm_record = rpmdb.query.filter_by(name=rpm_name).first()
+		if rpm_record is None:
+			print "No records returned for package " + rpm_name
+			flash(u'Can\'t update record, no rpm named '+rpm_name+' was found.','error')
+		else:
+			print "Found record for package " + rpm_name
+			# updating only the fields that are not null
+			# this means the url could look like '/update/rpm_name/null/new_version/new_warning'
+			if new_name != 'null':
+				# If a new name is found (not null) then update the record's 'name' field with the new name
+				rpm_record.name = new_name
+				print "Updating rpm name..."
+			if version != 'null':
+				rpm_record.version = version
+				print "Updating rpm version..."
+			if warning != 'null'
+				rpm_record.warning = warning
+				print "Updating rpm warning..."
+			
+			db.session.commit()
+			flash(u'Updated package '+rpm_name+'\'s properties successfully','message')
+	except:
+		print "Something went wrong trying to update the database"
+		flash(u'Something went wrong when trying to update the record for '+rpm_name,'error')
+
+	return redirect(url_for('list'))
+
+
 @app.route('/delete/<rpm_name>')
 def delete(rpm_name):
 	'''

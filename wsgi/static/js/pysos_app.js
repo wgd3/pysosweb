@@ -86,7 +86,12 @@ $(document).ready(function() {
 			}	
 		});
 
-		
+		// find the package name on the original row
+		// necessary because even if we're updating the name, we need to look up the record by it's current name
+		var origName = curRow.children().eq(1).text();
+		console.log("Found original package name to be: " + origName);		
+
+	
 		console.log("newData has the following length: " + newData.length);
 
 		// cycle through input boxes looking for new text
@@ -123,6 +128,27 @@ $(document).ready(function() {
 		// if there's new data, do something with it
 		if (updatedData) {
 			console.log("Hey, there's updated data here. Do something with it!")
+			// maybe use a /update page?
+			var url_string = '/update/'+origName+'/'
+			if (newName) {
+				url_string = url_string + newData[0]+'/'
+				console.log("updating update url: "+url_string)
+			} else {
+				url_string = url_string + 'null/'
+			}
+			if (newVersion) {
+				url_string = url_string + newData[1]+'/'
+				console.log("updating update url: "+url_string)
+			} else {
+				url_string = url_string + 'null/'
+			}
+			if (newWarning) {
+				url_string = url_string + newData[2]+'/'
+				console.log("updating update url: "+url_string)
+			} else {
+				url_string = url_string + 'null/'
+			}
+
 		} else {
 			console.log("User clicked check mark glyph with no new data in boxes, closing edit row");
 			// close the editing row - same action as if pencil glyph is clicked
