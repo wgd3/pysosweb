@@ -127,7 +127,7 @@ def update(rpm_name,new_name,version,warning):
 			if version != 'null':
 				rpm_record.version = version
 				print "Updating rpm version..."
-			if warning != 'null'
+			if warning != 'null':
 				rpm_record.warning = warning
 				print "Updating rpm warning..."
 			
