@@ -80,7 +80,8 @@ $(document).ready(function() {
 		var newData = new Array();
 		var newData = newRow.find("input").each(function() {
 			console.log("Looking for text input: " + $(this).val());
-			newData.push($(this).val());
+			var tempText = $(this).val();
+			newData.push(tempText);
 			for (i=0;i<newData.length;i++) {
 				console.log(newData[i])
 			}	
@@ -104,7 +105,7 @@ $(document).ready(function() {
 			{
 			console.log("Entering loop with index: " + i);
 			var newText = newData[i];
-			console.log("Evaluating new text: " + newText.text());
+			console.log("Evaluating new text: " + newText);
 			if (newText != '')
 				{
 				updatedData = true;
@@ -131,19 +132,19 @@ $(document).ready(function() {
 			// maybe use a /update page?
 			var url_string = '/update/'+origName+'/'
 			if (newName) {
-				url_string = url_string + newData[0].val()+'/'
+				url_string = url_string + newData[0]+'/'
 				console.log("updating update url: "+url_string)
 			} else {
 				url_string = url_string + 'null/'
 			}
 			if (newVersion) {
-				url_string = url_string + newData[1].val()+'/'
+				url_string = url_string + newData[1]+'/'
 				console.log("updating update url: "+url_string)
 			} else {
 				url_string = url_string + 'null/'
 			}
 			if (newWarning) {
-				url_string = url_string + newData[2].val()+'/'
+				url_string = url_string + newData[2]'/'
 				console.log("updating update url: "+url_string)
 			} else {
 				url_string = url_string + 'null/'
