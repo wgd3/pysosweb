@@ -131,24 +131,24 @@ $(document).ready(function() {
 			// maybe use a /update page?
 			var url_string = '/update/'+origName+'/'
 			if (newName) {
-				url_string = url_string + newData[0]+'/'
+				url_string = url_string + newData[0].val()+'/'
 				console.log("updating update url: "+url_string)
 			} else {
 				url_string = url_string + 'null/'
 			}
 			if (newVersion) {
-				url_string = url_string + newData[1]+'/'
+				url_string = url_string + newData[1].val()+'/'
 				console.log("updating update url: "+url_string)
 			} else {
 				url_string = url_string + 'null/'
 			}
 			if (newWarning) {
-				url_string = url_string + newData[2]+'/'
+				url_string = url_string + newData[2].val()+'/'
 				console.log("updating update url: "+url_string)
 			} else {
 				url_string = url_string + 'null/'
 			}
-
+			window.location.href = url_string
 		} else {
 			console.log("User clicked check mark glyph with no new data in boxes, closing edit row");
 			// close the editing row - same action as if pencil glyph is clicked
