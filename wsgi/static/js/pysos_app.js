@@ -130,8 +130,9 @@ $(document).ready(function() {
 		// if there's new data, do something with it
 		if (updatedData) {
 			console.log("Hey, there's updated data here. Do something with it!")
-			// maybe use a /update page?
+			// use orig_name to look up the record
 			var url_string = '/update/'+origName+'/'
+			// if a new name exists, add to URL for updating
 			if (newName) {
 				url_string = url_string + newData[0].value+'/'
 				console.log("updating update url: "+url_string)
@@ -145,11 +146,13 @@ $(document).ready(function() {
 				url_string = url_string + 'null/'
 			}
 			if (newWarning) {
+				// leaving off the trailing slash due to Flask routing behavior (trailing / causes 404)
 				url_string = url_string + newData[2].value
 				console.log("updating update url: "+url_string)
 			} else {
 				url_string = url_string + 'null'
 			}
+			// javascript call to open a URL, in this case it's the update URL built above
 			window.location.href = url_string
 		} else {
 			console.log("User clicked check mark glyph with no new data in boxes, closing edit row");
